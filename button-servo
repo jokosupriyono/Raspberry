@@ -1,1 +1,28 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setwarning(False)
+GPIO.setmode(GPIO.BOARD)
 
+GPIO.setup(16,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(11,GPIO.OUT)
+
+q=GPIO.PWM(11,50)
+q.start(7.5)
+
+try:
+  while True:
+    input_state = GPIO.input(16)
+    if input_state == False:
+      print ('button ditekan')
+      q.ChangeDutyCycle(2.5)
+      print ('(2.5)')
+      time.sleep(2)
+      q.ChangeDutyCycle(7.5)
+      print ('(7.5)')
+      time.sleep(2)
+      q.ChangeDutyCycle(12.5)
+      print ('(12.5)')
+      time.sleep(2)
+ except KeyboardInterupt:
+  q.stop()
+  GPIO.cleanup()
