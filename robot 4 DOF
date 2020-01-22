@@ -32,29 +32,29 @@ try:
       time.sleep(2)
       s3.ChangeDutyCycle(3.0) #15 S3 NAIK
       time.sleep(2)
-      s4.ChangeDutyCycle(10.0) #135 S4 BUKA GRIPPER
+      s4.ChangeDutyCycle(10.0) #135 S4 GRIPPER BUKA
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s2.ChangeDutyCycle(10.0) #135 S2 SB TURUN
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s4.ChangeDutyCycle(5.0) #45 S4 GRIPPER TUTUP
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s2.ChangeDutyCycle(4.0) #35 S2 SB NAIK
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s3.ChangeDutyCycle(6.0) #55 S3 TURUN
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s1.ChangeDutyCycle(2.5) #0 S1 PUTAR
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s3.ChangeDutyCycle(3.0) #15 S3 NAIK
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s2.ChangeDutyCycle(10.0) #135 S2 TURUN
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s4.ChangeDutyCycle(10.0) #135 S4 GRIPPER BUKA
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s4.ChangeDutyCycle(5.0) #45 S4 GRIPPER TUTUP
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s2.ChangeDutyCycle(4.0) #35 S2 SB NAIK
       time.sleep(2)
-      s1.ChangeDutyCycle(2.5)
+      s3.ChangeDutyCycle(6.0) #55 S3 TURUN
       time.sleep(2)
      
  except KeyboardInterupt:
