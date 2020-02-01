@@ -1,0 +1,12 @@
+import I2C_LCD_driver
+import time
+mylcd = I2C_LCD_driver.lcd()
+
+while True:
+    mylcd.lcd_display_string("HAII...", 1)
+    mylcd.lcd_display_string("IM ROBOT 4DOF", 2)
+    time.sleep(5)
+    mylcd.lcd_clear()
+    
+    mylcd.lcd_display_string("JOKO SUPRIYONO", 1)
+    mylcd.lcd_displ
