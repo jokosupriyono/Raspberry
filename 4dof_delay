@@ -1,0 +1,35 @@
+from __future__ import division # in case you're on Python 2
+
+from gpiozero import MCP3008, Servo, Button
+from gpiozero.tools import scaled
+from itertools import cycle
+from signal import pause
+
+
+class ServoRecorder(object):
+    def __init__(self):
+        self.recording = None
+        self.record_button = Button(21)
+        self.record_button.when_pressed = self.start_recording
+        self.record_button.when_released = self.stop_recording
+        self.servo = Servo(20)
+        self.servo.source_delay = 1/100 # read up to 100 values/s
+        self.pot = MCP3008(channel=0)
+
+    def record(self, values):
+        self.recording = []
+        for value in values:
+            self.recording.append(value)
+            yield value
+
+    def start_recording(self):
+        print('Recording')
+        self.servo.source = self.record(scaled(self.pot.values, -1, 1))
+
+    def stop_recording(self):
+        print('Playing back %d values' % len(self.recording))
+        self.servo.source = cycle(self.recording)
+
+
+recorder = ServoRecorder()
+pause()
