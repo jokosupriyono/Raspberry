@@ -12,9 +12,18 @@ class ServoRecorder(object):
         self.record_button = Button(21)
         self.record_button.when_pressed = self.start_recording
         self.record_button.when_released = self.stop_recording
-        self.servo = Servo(20)
-        self.servo.source_delay = 1/100 # read up to 100 values/s
-        self.pot = MCP3008(channel=0)
+        self.servo1 = Servo(16)
+        self.servo2 = Servo(19)
+        self.servo3 = Servo(20)
+        self.servo4 = Servo(26)
+        self.servo1.source_delay = 1/100 # read up to 100 values/s
+        self.servo2.source_delay = 1/100 # read up to 100 values/s
+        self.servo3.source_delay = 1/100 # read up to 100 values/s
+        self.servo4.source_delay = 1/100 # read up to 100 values/s
+        self.pot1 = MCP3008(channel=0)
+        self.pot2 = MCP3008(channel=1)
+        self.pot3 = MCP3008(channel=2)
+        self.pot4 = MCP3008(channel=3)
 
     def record(self, values):
         self.recording = []
@@ -24,11 +33,17 @@ class ServoRecorder(object):
 
     def start_recording(self):
         print('Recording')
-        self.servo.source = self.record(scaled(self.pot.values, -1, 1))
+        self.servo1.source = self.record(scaled(self.pot1.values, -1, 1))
+        self.servo2.source = self.record(scaled(self.pot2.values, -1, 1))
+        self.servo3.source = self.record(scaled(self.pot3.values, -1, 1))
+        self.servo4.source = self.record(scaled(self.pot4.values, -1, 1))
 
     def stop_recording(self):
         print('Playing back %d values' % len(self.recording))
-        self.servo.source = cycle(self.recording)
+        self.servo1.source = cycle(self.recording)
+        self.servo2.source = cycle(self.recording)
+        self.servo3.source = cycle(self.recording)
+        self.servo4.source = cycle(self.recording)
 
 
 recorder = ServoRecorder()
