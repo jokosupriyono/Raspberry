@@ -1,0 +1,25 @@
+from gpiozero import Servo, MCP3008, Button
+from subprosess import check_call
+from signal import pause
+
+def shutdown():
+    check_call(['sudo', 'poweroff'])
+    
+shutdown_btn = Button (21)
+shutdown_btn.when_pressed = shutdown
+
+pot1 = MCP3008(Chanel=0)
+pot2 = MCP3008(Chanel=1)
+pot3 = MCP3008(Chanel=2)
+pot4 = MCP3008(Chanel=3)
+
+servo1 = Servo(16)
+servo2 = Servo(19)
+servo3 = Servo(20)
+servo4 = Servo(26)
+servo1.source = pot1.values
+servo2.source = pot2.values
+servo3.source = pot3.values
+servo4.source = pot4.values
+
+pause() # let the script run until Ctrl+C
