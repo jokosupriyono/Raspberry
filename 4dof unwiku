@@ -1,7 +1,15 @@
-from gpiozero import Servo, MCP3008, Button
-from gpiozero.tools import scaled
-from signal import pause
-from time import sleep
+from __future__ import division #Python2
+from gpiozero import Servo, MCP3008, Button #library GPIOZERO servo, MCP3008, Button
+from subprosess import check_call   #Library subproses for shutdown
+from gpiozero.tools import scaled   #GPIOZERO for scaled potentiometer
+from signal import pause    #signal for pause
+from time import sleep  #time for sleep
+
+def shutdown():
+    check_call(['sudo', 'poweroff'])
+    
+shutdown_btn = Button (21)  #button gpio(21) board(40)
+shutdown_btn.when_pressed = shutdown
 
 pot1 = MCP3008(channel=0)
 pot2 = MCP3008(channel=1)
