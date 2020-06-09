@@ -1,10 +1,9 @@
-from __future__ import division # in case you're on Python 2
-
+from __future__ import division #Python 2
 from gpiozero import MCP3008, Servo, Button
 from gpiozero.tools import scaled
 from itertools import cycle
 from signal import pause
-
+from time import sleep
 
 class ServoRecorder(object):
     def __init__(self):
@@ -12,10 +11,10 @@ class ServoRecorder(object):
         self.record_button = Button(21)
         self.record_button.when_pressed = self.start_recording
         self.record_button.when_released = self.stop_recording
-        self.servo1 = Servo(16)
-        self.servo2 = Servo(19)
-        self.servo3 = Servo(20)
-        self.servo4 = Servo(26)
+        self.servo1 = Servo(16, min_pulse_width=1/1000, max_pulse_width=2/1000)
+        self.servo2 = Servo(19, min_pulse_width=1/1000, max_pulse_width=2/1000)
+        self.servo3 = Servo(20, min_pulse_width=1/1000, max_pulse_width=2/1000)
+        self.servo4 = Servo(26, min_pulse_width=1/1000, max_pulse_width=2/1000)
         self.servo1.source_delay = 1/100 # read up to 100 values/s
         self.servo2.source_delay = 1/100 # read up to 100 values/s
         self.servo3.source_delay = 1/100 # read up to 100 values/s
